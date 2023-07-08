@@ -1,13 +1,18 @@
-console.log("aaaa")
-// const scriptHelper = require("./scriptHelper") 
-// const validateInput = scriptHelper.validateInput()
-// const myFetch = scriptHelper.myFetch()
-
 
 
 
 
 window.addEventListener("load", function() {
+
+    let form = document.querySelector("form")
+    form.addEventListener("submit", function(event){
+        event.preventDefault();
+        formSubmission(document, "pilotName", "copilotName", "fuelLevel", "cargoMass")
+     
+
+    })
+
+    
   
 //    let listedPlanets;
 //    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
