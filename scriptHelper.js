@@ -33,47 +33,63 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 
     function validateInput(input) {
-        
-        
-                
-
         if (input === ""){
-             alert("All fields are required!")
-             event.preventDefault();
-             return false
+             return "Empty"
         }
-        return true
-
-
+        if (isNaN(input)){
+            return "Not a Number"
+        }
+        if (!isNaN(input)){
+            return "Is a Number"
+        }
+        //validateInput() should take in a string as a parameter and return "Empty", "Not a Number", or "Is a Number" as appropriate
     }
-    // pilotName, copilotName, fuelLevel, cargoMass
-
-    //The pilot and co-pilot names should be strings and the fuel level and cargo mass should be numbers
-    //validateInput() should take in a string as a parameter and return "Empty", "Not a Number", or "Is a Number" as appropriate
+    
+    
+    
 
     function getValue(variable){ return variable.value} // get values from variables
 
     function formSubmission(document, pilot, copilot, fuelLevel, cargoMass) {
-    //put click listener here
-    //call validateInput and pass info to it
-    //
+        
+       
+
         let chosenPilot = document.querySelector("input[name = " + pilot + "]")
         let chosenCopilot = document.querySelector("input[name = " + copilot + "]")
         let chosenFuelLevel = document.querySelector("input[name = " + fuelLevel + "]")
         let chosenCargoMass = document.querySelector("input[name = " + cargoMass + "]")
 
-        let options = [chosenPilot, chosenCopilot, chosenFuelLevel, chosenCargoMass]
-        let optionsValues = options.map(getValue)
-         ////pass to validateInput
+        let options = [chosenPilot, chosenCopilot, chosenFuelLevel, chosenCargoMass] //array of options
+        let optionsValues = options.map(getValue) //get values for options
 
-        optionsValues.map(validateInput)
+        let optionsReturns = optionsValues.map(validateInput) //pass to validateInput, get array of responses
+        
+        function alertsCheck(){ 
+            
+            if (optionsReturns.includes("Empty")){
+                alert("All fields are required.")
+            }else if (optionsReturns[0]==="Is a Number"){ //pilot and co-pilot names should be strings
+                alert("Pilot Name must be a word.")
+            }else if (optionsReturns[1]==="Is a Number"){
+                alert("Copilot Name must be a word.")
+            }else if (optionsReturns[2]==="Not a Number"){ //fuel level and cargo mass should be numbers
+                alert("Fuel Level must be a number.")
+            }else if (optionsReturns[3]==="Not a Number"){
+                alert("Cargo Mass must be a number.")
+            }else{
+                return //if no alerts are tripped, return before preventDefault()
+            }
+            preventDefault()
+        }
+        alertsCheck()
+        
         
         
 
    
 
     
-        //use validateInput() to complete the formSubmission() function. formSubmission() will take in a document parameter and strings representing the pilot, co-pilot, fuel level, and cargo mass. 
+        //formSubmission() will take in a document parameter and strings representing the pilot, co-pilot, fuel level, and cargo mass. 
         //Using the values in those strings and the document parameter for your HTML document, update the shuttle requirements as described below. Make sure to call your formSubmission() function at the appropriate time in your script.js file!
     }
 
