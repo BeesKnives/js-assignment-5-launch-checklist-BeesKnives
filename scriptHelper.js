@@ -7,7 +7,7 @@
 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-    //This is the format of the innerHTML for the missionTarget div, which you can locate using the document parameter of addDestinationInfo()
+   
     
     
     missionTarget.innerHTML = `
@@ -50,7 +50,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
     
     
 
-    function getValue(variable){ return variable.value} // get values from variables
+    
 
 
 
@@ -63,6 +63,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         let chosenCargoMass = document.querySelector(`input[name = ${cargoMass}]`)
 
         let options = [chosenPilot, chosenCopilot, chosenFuelLevel, chosenCargoMass] //array of options
+
+        function getValue(variable){ return variable.value} // get values from variables
         let optionsValues = options.map(getValue) //get string values for options w/ getValue Function (validate input uses the string value, not the variable itself)
 
         let optionsReturns = optionsValues.map(validateInput) //pass to validateInput, get array of responses
@@ -155,12 +157,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 
 
-// module.exports = {
-//     addDestinationInfo: addDestinationInfo,
-//     validateInput: validateInput,
-//     pickPlanet: pickPlanet,
-//     myFetch: myFetch
-// }
+
 
 
 // module.exports.addDestinationInfo = addDestinationInfo;
