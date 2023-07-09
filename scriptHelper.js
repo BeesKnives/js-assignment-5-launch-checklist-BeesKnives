@@ -7,19 +7,21 @@
 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-    // Here is the HTML formatting for our mission target div.
-    /*
-                    <h2>Mission Destination</h2>
-                    <ol>
-                        <li>Name: </li>
-                        <li>Diameter: </li>
-                        <li>Star: ${star}</li>
-                        <li>Distance from Earth: </li>
-                        <li>Number of Moons: </li>
-                    </ol>
-                    <img src="">
-    */
- }
+    //This is the format of the innerHTML for the missionTarget div, which you can locate using the document parameter of addDestinationInfo()
+    
+    
+    missionTarget.innerHTML = `
+    <h2>Mission Destination</h2>
+    <ol>
+        <li>Name: ${document.name}</li>
+        <li>Diameter: ${document.diameter}</li>
+        <li>Star: ${document.star}</li>
+        <li>Distance from Earth: ${document.distance}</li>
+        <li>Number of Moons: ${document.moons}</li>
+    </ol>
+    <img src="${document.image}">
+    `
+}
 
 
 
@@ -65,6 +67,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
         let optionsReturns = optionsValues.map(validateInput) //pass to validateInput, get array of responses
         
+
         function alertsCheck(){ 
             if (optionsReturns.includes("Empty")){
                 alert("All fields are required.")
@@ -123,13 +126,6 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
         }
         updateStatus()
         
-
-
-
-
-
-
-        
     }
 
 
@@ -143,15 +139,18 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
     async function myFetch() {
         let planetsReturned;
-
-        planetsReturned = await fetch().then( function(response) {
-            });
-
-        return planetsReturned;
+        await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+            planetsReturned = response.json()
+        })
+        return planetsReturned; //object array of planet objects
     }
+
 
     function pickPlanet(planets) {
+        let randomIndex = Math.floor(Math.random()*(planets.length))
+        return planets[randomIndex] //object of a planet's info
     }
+
 
 
 
